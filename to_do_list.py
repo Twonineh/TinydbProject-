@@ -90,13 +90,14 @@ def danh_sach_cong_viec_da_hoan_thanh():
         print("Không có công việc nào đã hoàn thành.")
 
 def danh_dau_hoan_thanh():
-    """Đánh dấu một công việc là đã hoàn thành."""
+    """Đánh dấu một công việc là đã hoàn thành (cải tiến)."""
+    danh_sach_cong_viec()  # Hiển thị danh sách để người dùng chọn
     try:
         cong_viec_id = int(input("Nhập ID công việc muốn đánh dấu hoàn thành: "))
         cong_viec = todo_table.get(doc_id=cong_viec_id)
         if cong_viec:
             todo_table.update({'hoan_thanh': True}, doc_ids=[cong_viec_id])
-            print(f"Công việc ID {cong_viec_id} đã được đánh dấu là hoàn thành!")
+            print(f"Công việc '{cong_viec['noi_dung']}' đã được đánh dấu hoàn thành!")
         else:
             print(f"Không tìm thấy công việc với ID {cong_viec_id}.")
     except ValueError:
